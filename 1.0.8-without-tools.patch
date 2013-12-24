@@ -1,0 +1,18 @@
+--- origsrc/usbmuxd-1.0.8/CMakeLists.txt	2012-04-07 17:50:09.000000000 -0500
++++ src/usbmuxd-1.0.8/CMakeLists.txt	2013-12-24 13:22:41.438443200 -0600
+@@ -71,7 +71,14 @@ if (WITH_USBMUXD)
+     add_subdirectory (udev)
+   endif()
+ endif()
+-add_subdirectory (tools)
++option(WITH_TOOLS "Build usbmux tools (iproxy)" ON)
++if(WITH_TOOLS)
++  message("-- Will build iproxy: YES")
++  add_subdirectory (tools)
++else()
++  message("-- Will build iproxy: NO")
++  message("** NOTE: will NOT build iproxy **")
++endif()
+ 
+ # pkg-config
+ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/libusbmuxd.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/libusbmuxd.pc")

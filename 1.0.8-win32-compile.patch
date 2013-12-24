@@ -1,0 +1,15 @@
+libusbmuxd.c: In function ‘device_monitor’:
+libusbmuxd.c:621:2: error: too few arguments to function ‘device_monitor_cleanup’
+libusbmuxd.c:583:13: note: declared here
+
+--- origsrc/usbmuxd-1.0.8/libusbmuxd/libusbmuxd.c	2012-04-07 17:50:09.000000000 -0500
++++ src/usbmuxd-1.0.8/libusbmuxd/libusbmuxd.c	2013-12-24 13:53:53.616525600 -0600
+@@ -618,7 +618,7 @@ static void *device_monitor(void *data)
+ #ifndef WIN32
+ 	pthread_cleanup_pop(1);
+ #else
+-	device_monitor_cleanup();
++	device_monitor_cleanup(NULL);
+ #endif
+ 	return NULL;
+ }

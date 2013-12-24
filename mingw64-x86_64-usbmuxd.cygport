@@ -1,0 +1,22 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross cmake
+
+NAME="mingw64-x86_64-usbmuxd"
+VERSION=1.0.8
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="USB multiplexing daemon library for Win64 toolchain"
+DESCRIPTION="usbmuxd stands for USB multiplexing daemon. This daemon is in
+charge of multiplexing connections over USB to an iPhone or iPod touch.
+To users, it means you can sync your music, contacts, photos, etc. over USB.
+To developers, it means you can connect to any listening localhost socket on
+the device."
+HOMEPAGE="http://www.libimobiledevice.org/"
+SRC_URI="http://www.libimobiledevice.org/downloads/usbmuxd-${VERSION}.tar.bz2"
+SRC_DIR="usbmuxd-${VERSION}"
+PATCH_URI="
+	1.0.8-without-tools.patch
+	1.0.8-win32-compile.patch
+"
+
+CYGCMAKE_ARGS="-DWITH_USBMUXD=OFF -DWITH_TOOLS=OFF"
